@@ -33,7 +33,7 @@ namespace SirmaSolutionTask.Controllers
                     }
                     filebase.SaveAs(FilePath + filebase.FileName);
 
-                    employee.employeeInfo = new List<Tuple<int, int, int>>();
+                    employee.employeeInfo = new List<Tuple<int,int, int, int>>();
                     employeeDataList = ReadEmployeeInfo(FilePath + filebase.FileName);
                    
                     employee = FindPairsWithLongestCommonWorkDuration(employeeDataList);
@@ -74,7 +74,7 @@ namespace SirmaSolutionTask.Controllers
 
                         if (endDate >= startDate)
                         {
-                            string pairKey = employee1.Empld < employee2.Empld ? $"{employee1.Empld}-{employee2.Empld}" : $"{employee2.Empld}-{employee1.Empld}";
+                            string pairKey = employee1.Empld < employee2.Empld ? $"{employee1.Empld}-{employee2.Empld}-{employee1.ProjectId}" : $"{employee2.Empld}-{employee1.Empld}-{employee2.ProjectId}";
 
                             int daysWorked = (endDate - startDate).Days;
 
@@ -99,10 +99,11 @@ namespace SirmaSolutionTask.Controllers
                 string[] employees = pair.Key.Split('-');
                 int employeeID1 = int.Parse(employees[0]);
                 int employeeID2 = int.Parse(employees[1]);
+                int projectId = int.Parse(employees[2]);
                 int daysWorked = pair.Value;
 
                 
-                employee.employeeInfo.Add(Tuple.Create(employeeID1, employeeID2, daysWorked));
+                employee.employeeInfo.Add(Tuple.Create(employeeID1, employeeID2, projectId, daysWorked));
                
             }
             return employee;

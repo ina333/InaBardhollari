@@ -13,11 +13,11 @@ namespace SirmaSolutionTask.Models
         public DateTime DateTo { get; set; }
         public string file { get; set; }
         public HttpPostedFile fileBase { get; set; }
-        public List<Tuple<int, int, int>> employeeInfo { get; set; } = null;
+        public List<Tuple<int, int,int, int>> employeeInfo { get; set; } = null;
         public EmployeeData()
         {
             file = "";
-            employeeInfo = new List<Tuple<int, int, int>>();
+            employeeInfo = new List<Tuple<int, int,int, int>>();
         }
     }
 }

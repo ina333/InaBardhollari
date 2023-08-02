@@ -48,16 +48,18 @@
                 <tr>
                     <th>Employee ID #1</th>
                     <th>Employee ID #2</th>
+                    <th>ProjectID</th>
                     <th>Total Days</th>
                 </tr>
 
                 @foreach (var data in Model.employeeInfo)
                 {
-                    <tr>
-                        <td>@data.Item1</td>
-                        <td>@data.Item2</td>
-                        <td>@data.Item3</td>
-                    </tr>
+            <tr>
+                <td>@data.Item1</td>
+                <td>@data.Item2</td>
+                <td>@data.Item3</td>
+                <td>@data.Item4</td>
+            </tr>
                 }
 
             </table>
