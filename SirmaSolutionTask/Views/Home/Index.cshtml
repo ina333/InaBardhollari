@@ -1,0 +1,67 @@
+﻿@model SirmaSolutionTask.Models.EmployeeData
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+*@
+<style>
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+@using (Html.BeginForm("ReadDataFromCSV", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-md-6 offset-md-3 mt-5">
+        <h1>Sirma Solution Task</h1>
+        <hr>
+        <h4 style="color:red;">@TempData["messageInfo"]</h4>
+        <div class="form-group mt-3">
+            <label>Upload your CVS Employeers Document: </label>
+            @Html.TextBoxFor(x => x.fileBase, new { @id = "fileCSV", @class = "form-styling", @type = "file" })
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        @* <hr>*@
+
+    </div>
+    <hr>
+    <div>
+        @if (Model.employeeInfo != null)
+        {
+            <table>
+                <tr>
+                    <th>Employee ID #1</th>
+                    <th>Employee ID #2</th>
+                    <th>Total Days</th>
+                </tr>
+
+                @foreach (var data in Model.employeeInfo)
+                {
+                    <tr>
+                        <td>@data.Item1</td>
+                        <td>@data.Item2</td>
+                        <td>@data.Item3</td>
+                    </tr>
+                }
+
+            </table>
+        }
+    </div>
+
+}
